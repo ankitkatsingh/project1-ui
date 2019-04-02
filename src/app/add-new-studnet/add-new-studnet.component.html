@@ -1,0 +1,74 @@
+<div class="container">
+  <h2>Add Student</h2>
+  <form #addNewStudentForm="ngForm">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Enter Name" type="text" id="name" name="name" [(ngModel)]="studentObj.name" required>
+    </mat-form-field>
+    
+    <div class="example-container">
+      <mat-form-field>
+        <input matInput placeholder="Enter Class" type="text" id="class" name="class" [(ngModel)]="studentObj.standard" required>
+      </mat-form-field>
+      
+      <mat-form-field>
+        <input matInput placeholder="Enter RollNo" type="number" id="rollNo" name="rollNo" [(ngModel)]="studentObj.rollNo" required>
+      </mat-form-field>
+    
+      <mat-form-field>
+        <mat-select placeholder="Gender" [(ngModel)]="studentObj.gender" name="gender" required>
+          <mat-option value="">----Please Select----</mat-option>
+          <mat-option *ngFor="let g of genders" [value]="g">
+            {{g}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="example-container">
+      <mat-form-field>
+        <input matInput placeholder="Hindi Marks" type="number" id="hindi" name="hindi" [(ngModel)]="studentMark.hindiMark" (ngModelChange)="calculatTotalMark(studentMark,$event)" required>
+      </mat-form-field>
+      
+      <mat-form-field>
+        <input matInput placeholder="English Marks" type="number" id="english" name="english" [(ngModel)]="studentMark.englishMark" (ngModelChange)="calculatTotalMark(studentMark,$event)" required>
+      </mat-form-field>
+    
+      <mat-form-field>
+        <input matInput placeholder="Math Marks" type="number" id="math" name="math" [(ngModel)]="studentMark.mathMark" (ngModelChange)="calculatTotalMark(studentMark,$event)" required>
+      </mat-form-field>
+    </div>
+
+    <div class="example-container">
+      <mat-form-field>
+        <input matInput placeholder="Science Marks" type="number" id="science" name="science" [(ngModel)]="studentMark.scienceMark" (ngModelChange)="calculatTotalMark(studentMark,$event)" required>
+      </mat-form-field>
+      
+      <mat-form-field>
+        <input matInput placeholder="Social Science Marks" type="number" id="sst" name="sst" [(ngModel)]="studentMark.socialScienceMark" (ngModelChange)="calculatTotalMark(studentMark,$event)" required>
+      </mat-form-field>
+    
+      <mat-form-field>
+        <input matInput id="total" placeholder="Total Marks" name="total" [disabled]="true" [(ngModel)]="studentMark.totalMark">
+      </mat-form-field>
+    </div>
+
+    <div class="example-container">
+      <mat-form-field>
+        <input matInput id="result" placeholder="Result" name="result" [(ngModel)]="studentObj.result" disabled>
+      </mat-form-field>
+      
+      <mat-form-field>
+        <input matInput id="percentage" placeholder="Percentage" name="percentage" [(ngModel)]="studentMark.percentage" required disabled>
+      </mat-form-field>
+    
+      <mat-form-field>
+        <input matInput id="grade" placeholder="Grade" name="grade" [(ngModel)]="studentObj.grades" required disabled>
+      </mat-form-field>
+    </div>
+  
+    <button mat-raised-button color="primary" *ngIf="showSubmitButton" (click)="addNewStudent(studentObj,studentMark)" [disabled]="!addNewStudentForm.valid || onceClicked">Submit</button>
+
+    <button mat-raised-button color="primary" *ngIf="showUpdateButton" (click)="updateStudent(studentObj,studentMark)" [disabled]="!addNewStudentForm.valid">Update</button>
+
+  </form>
+</div>

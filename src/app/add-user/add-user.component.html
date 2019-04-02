@@ -1,0 +1,47 @@
+<div class="container">
+  <h2>Add User</h2>
+  <form #addNewUserForm="ngForm">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Enter UserName" type="text" id="userName" name="userName" [(ngModel)]="userObj.userName" required>
+    </mat-form-field>
+    
+    <div class="example-container">
+      <mat-form-field>
+        <input matInput placeholder="Enter First Name" type="text" id="firstName" name="firstName" [(ngModel)]="userObj.firstName" required>
+      </mat-form-field>
+      
+      <mat-form-field>
+        <input matInput placeholder="Enter Last Name" type="text" id="lastName" name="lastName" [(ngModel)]="userObj.lastName" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Enter Password" type="password" id="password" name="password" [(ngModel)]="userObj.password" required>
+      </mat-form-field>
+  </div>
+
+    <div class="example-container">
+      <mat-form-field>
+        <mat-select placeholder="Roles" [(ngModel)]="userObj.roles" name="roles" required multiple>
+          <mat-option *ngFor="let role of rolesList" [value]="role.id">
+            {{role.roleName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+      <mat-form-field>
+        <mat-select placeholder="WorkSpace" [(ngModel)]="userObj.workSpace" name="workSpace" required>
+          <mat-option value="">----Please Select----</mat-option>
+          <mat-option *ngFor="let workspace of workSpaceList" [value]="workspace.id">
+            {{workspace.workSpaceName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+     
+    </div>
+
+    <button mat-raised-button color="primary" (click)="addNewUser(userObj)" [disabled]="!addNewUserForm.valid">Submit</button>
+
+    
+
+  </form>
+</div>

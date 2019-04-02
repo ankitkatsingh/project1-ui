@@ -1,0 +1,16 @@
+<div class="container">
+  <h2>Login</h2>
+  <form #loginForm="ngForm">
+   
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Enter UserName" type="text" id="name" name="name" [(ngModel)]="userLoginObject.userName" required>
+    </mat-form-field>
+    
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Enter Password" type="password" id="password" name="password" [(ngModel)]="userLoginObject.password" required>
+    </mat-form-field>
+   
+    <button mat-raised-button color="primary" (click)="loginUserWithCreditinals(userLoginObject)" [disabled]="!loginForm.valid">Login</button>
+
+  </form>
+</div>
